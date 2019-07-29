@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 page test 1`] = `
+<div
+  className="error-page"
+>
+  (404)页面不存在，请检查地址
+</div>
+`;

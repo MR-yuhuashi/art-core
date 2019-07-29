@@ -7,7 +7,8 @@
   "private": false,
   "scripts": {
     "clean": "sudo rimraf -g 'dist/!(vendors)/**/*'",
-    "build": "npm run clean && cpx 'src/**/*.{json,jsx,html,less,css,png,jpg,jpeg,gif,eot,svg,ttf,woff}' ./dist && tsc -p ./tsconfig.json -w"
+    "build": "npm run clean && cpx 'src/**/*.{json,jsx,html,less,css,png,jpg,jpeg,gif,eot,svg,ttf,woff}' ./dist && tsc -p ./tsconfig.json -w",
+    "test": "jest"
   },
   "dependencies": {
     "art-lib-utils": "^0.0.6",
@@ -21,10 +22,22 @@
     "react-dom": "16.4.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
     "@types/classnames": "^2.2.6",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.12",
     "@types/qs": "^6.5.1",
     "@types/react": "^16.7.3",
-    "@types/react-dom": "^16.0.9"
+    "@types/react-dom": "^16.0.9",
+    "babel-jest": "^24.8.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "enzyme-to-json": "^3.3.5",
+    "ts-jest": "^24.0.2"
   },
   "gitHead": "bb293d5a7f2a67dd21386089b743891b98f89482"
 }
