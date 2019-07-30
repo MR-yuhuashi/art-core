@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create correct snapShot 1`] = `
+<div
+  className="fast-click-test"
+  onClick={[MockFunction]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[MockFunction]}
+>
+  <p>
+    123
+  </p>
+  <span>
+    dddd
+  </span>
+</div>
+`;
