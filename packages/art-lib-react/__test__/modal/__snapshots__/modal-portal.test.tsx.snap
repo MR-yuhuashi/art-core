@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`close modal portal has different class names 1`] = `
+<UnTouchable>
+  <FastClick
+    className="modal-portal-overlay modal-portal-overlay-before-close"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
+    threshold={15}
+    timeThreshold={200}
+  />
+  <div
+    className="modal-portal-wrap"
+    style={Object {}}
+  >
+    <div
+      className="modal-portal-content modal-portal-content-before-close"
+      onKeyDown={[Function]}
+    >
+      <p>
+        123
+      </p>
+      <span>
+        dddd
+      </span>
+    </div>
+  </div>
+</UnTouchable>
+`;
+
+exports[`open modal portal has different class names 1`] = `
+<UnTouchable>
+  <FastClick
+    className="modal-portal-overlay modal-portal-overlay-after-open"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
+    threshold={15}
+    timeThreshold={200}
+  />
+  <div
+    className="modal-portal-wrap"
+    style={Object {}}
+  >
+    <div
+      className="modal-portal-content modal-portal-content-after-open"
+      onKeyDown={[Function]}
+    >
+      <p>
+        123
+      </p>
+      <span>
+        dddd
+      </span>
+    </div>
+  </div>
+</UnTouchable>
+`;
+
+exports[`the state isOpen is false and it render nothing 1`] = `""`;
+
+exports[`the state isOpen is true and it render correct 1`] = `
+<UnTouchable>
+  <FastClick
+    className="modal-portal-overlay"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
+    threshold={15}
+    timeThreshold={200}
+  />
+  <div
+    className="modal-portal-wrap"
+    style={Object {}}
+  >
+    <div
+      className="modal-portal-content"
+      onKeyDown={[Function]}
+    >
+      <p>
+        123
+      </p>
+      <span>
+        dddd
+      </span>
+    </div>
+  </div>
+</UnTouchable>
+`;
+
+exports[`the state isOpen is true and it render correct 2`] = `
+<UnTouchable>
+  <FastClick
+    className="modal-portal-overlay"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
+    threshold={15}
+    timeThreshold={200}
+  />
+  <div
+    className="modal-portal-wrap"
+    style={Object {}}
+  >
+    <div
+      className="modal-portal-content"
+      onKeyDown={[Function]}
+    >
+      <p>
+        123
+      </p>
+      <span>
+        dddd
+      </span>
+    </div>
+  </div>
+</UnTouchable>
+`;
+
+exports[`the state isOpen is true and it render correct 3`] = `
+<UnTouchable>
+  <FastClick
+    className="modal-portal-overlay"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
+    threshold={15}
+    timeThreshold={200}
+  />
+  <div
+    className="modal-portal-wrap"
+    style={Object {}}
+  >
+    <div
+      className="modal-portal-content"
+      onKeyDown={[Function]}
+    >
+      <p>
+        123
+      </p>
+      <span>
+        dddd
+      </span>
+    </div>
+  </div>
+</UnTouchable>
+`;
