@@ -64,73 +64,41 @@ exports[`open modal portal has different class names 1`] = `
 </UnTouchable>
 `;
 
+exports[`the props mask and it has different style 1`] = `
+<UnTouchable>
+  <FastClick
+    className="modal-portal-overlay"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
+    threshold={15}
+    timeThreshold={200}
+  />
+  <div
+    className="modal-portal-wrap"
+    style={Object {}}
+  >
+    <div
+      className="modal-portal-content"
+      onKeyDown={[Function]}
+    >
+      <p>
+        123
+      </p>
+      <span>
+        dddd
+      </span>
+    </div>
+  </div>
+</UnTouchable>
+`;
+
 exports[`the state isOpen is false and it render nothing 1`] = `""`;
 
 exports[`the state isOpen is true and it render correct 1`] = `
-<UnTouchable>
-  <FastClick
-    className="modal-portal-overlay"
-    onClick={[Function]}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-      }
-    }
-    threshold={15}
-    timeThreshold={200}
-  />
-  <div
-    className="modal-portal-wrap"
-    style={Object {}}
-  >
-    <div
-      className="modal-portal-content"
-      onKeyDown={[Function]}
-    >
-      <p>
-        123
-      </p>
-      <span>
-        dddd
-      </span>
-    </div>
-  </div>
-</UnTouchable>
-`;
-
-exports[`the state isOpen is true and it render correct 2`] = `
-<UnTouchable>
-  <FastClick
-    className="modal-portal-overlay"
-    onClick={[Function]}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-      }
-    }
-    threshold={15}
-    timeThreshold={200}
-  />
-  <div
-    className="modal-portal-wrap"
-    style={Object {}}
-  >
-    <div
-      className="modal-portal-content"
-      onKeyDown={[Function]}
-    >
-      <p>
-        123
-      </p>
-      <span>
-        dddd
-      </span>
-    </div>
-  </div>
-</UnTouchable>
-`;
-
-exports[`the state isOpen is true and it render correct 3`] = `
 <UnTouchable>
   <FastClick
     className="modal-portal-overlay"

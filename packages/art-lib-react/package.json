@@ -39,6 +39,7 @@
     "enzyme-to-json": "^3.3.5",
     "jest-environment-jsdom": "^24.8.0",
     "jest-environment-jsdom-global": "^1.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "ts-jest": "^24.0.2"
   },
   "gitHead": "bb293d5a7f2a67dd21386089b743891b98f89482"

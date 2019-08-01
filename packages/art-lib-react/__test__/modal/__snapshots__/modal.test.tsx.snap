@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`open and close 1`] = `
+<Modal
+  bodyOpenClassName="modal-portal-body-open"
+  className="test-modal"
+  closeTimeoutMS={400}
+  isOpen={true}
+  mask={true}
+  parentSelector={[Function]}
+  portalClassName="modal-portal"
+  portalType="normal"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={true}
+  shouldReturnFocusAfterClose={true}
+  style={
+    Object {
+      "content": Object {},
+      "overlay": Object {},
+    }
+  }
+>
+  <Portal
+    containerInfo={
+      <div
+        class="modal-portal test-modal active"
+        style="z-index: 100; content: [object Object];"
+        v-modal-portal="normal"
+      >
+        <div
+          v-un-touchable=""
+        >
+          <div
+            class="modal-portal-overlay modal-portal-overlay-after-open"
+          />
+          <div
+            class="modal-portal-wrap"
+          >
+            <div
+              class="modal-portal-content modal-portal-content-after-open"
+            >
+              <p>
+                123
+              </p>
+              <span>
+                dddd
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  >
+    <ModalPortal
+      bodyOpenClassName="modal-portal-body-open"
+      className="test-modal"
+      closeTimeoutMS={400}
+      defaultStyles={
+        Object {
+          "content": Object {
+            "WebkitOverflowScrolling": "touch",
+          },
+          "overlay": Object {},
+        }
+      }
+      isOpen={true}
+      mask={true}
+      onAfterClosed={[Function]}
+      onBeforeOpen={[Function]}
+      shouldCloseOnEsc={true}
+      shouldCloseOnOverlayClick={true}
+      shouldFocusAfterRender={true}
+      shouldReturnFocusAfterClose={true}
+      style={
+        Object {
+          "content": Object {},
+          "overlay": Object {},
+        }
+      }
+    >
+      <UnTouchable>
+        <div
+          v-un-touchable=""
+        >
+          <FastClick
+            className="modal-portal-overlay modal-portal-overlay-after-open"
+            onClick={[Function]}
+            style={Object {}}
+            threshold={15}
+            timeThreshold={200}
+          >
+            <div
+              className="modal-portal-overlay modal-portal-overlay-after-open"
+              onClick={[Function]}
+              onTouchCancel={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              style={Object {}}
+            />
+          </FastClick>
+          <div
+            className="modal-portal-wrap"
+            style={Object {}}
+          >
+            <div
+              className="modal-portal-content modal-portal-content-after-open"
+              onKeyDown={[Function]}
+            >
+              <p>
+                123
+              </p>
+              <span>
+                dddd
+              </span>
+            </div>
+          </div>
+        </div>
+      </UnTouchable>
+    </ModalPortal>
+  </Portal>
+</Modal>
+`;
+
+exports[`open and close 2`] = `
+<Modal
+  bodyOpenClassName="modal-portal-body-open"
+  className="test-modal"
+  closeTimeoutMS={400}
+  isOpen={false}
+  mask={true}
+  parentSelector={[Function]}
+  portalClassName="modal-portal"
+  portalType="normal"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={true}
+  shouldReturnFocusAfterClose={true}
+  style={
+    Object {
+      "content": Object {},
+      "overlay": Object {},
+    }
+  }
+>
+  <Portal
+    containerInfo={
+      <div
+        class="modal-portal test-modal"
+        style="z-index: 101; content: [object Object];"
+        v-modal-portal="normal"
+      />
+    }
+  >
+    <ModalPortal
+      bodyOpenClassName="modal-portal-body-open"
+      className="test-modal"
+      closeTimeoutMS={400}
+      defaultStyles={
+        Object {
+          "content": Object {
+            "WebkitOverflowScrolling": "touch",
+          },
+          "overlay": Object {},
+        }
+      }
+      isOpen={false}
+      mask={true}
+      onAfterClosed={[Function]}
+      onBeforeOpen={[Function]}
+      shouldCloseOnEsc={true}
+      shouldCloseOnOverlayClick={true}
+      shouldFocusAfterRender={true}
+      shouldReturnFocusAfterClose={true}
+      style={
+        Object {
+          "content": Object {},
+          "overlay": Object {},
+        }
+      }
+    />
+  </Portal>
+</Modal>
+`;
