@@ -10,7 +10,7 @@ import merge from '../src/utils/merge';
  */
 
 describe('pass only one param', () => {
-  test('it will return {}',() => {
+  test('it will return {}', () => {
     const empty = {};
     expect(merge(true)).toEqual(empty);
     expect(merge(false)).toEqual(empty);
@@ -18,8 +18,8 @@ describe('pass only one param', () => {
 });
 
 describe('pass two params', () => {
-  test('it will return the target',() => {
-    let target = {country: 'china'};
+  test('it will return the target', () => {
+    const target = {country: 'china'};
     expect(merge(true, target)).toBe(target);
     expect(merge(false, target)).toBe(target);
     expect(merge(false, {country: 'china'})).toEqual(target);
@@ -27,8 +27,8 @@ describe('pass two params', () => {
 });
 
 describe('pass three or more params and the deep param is false', () => {
-  test('it will not change the target',() => {
-    let obj = {
+  test('it will not change the target', () => {
+    const obj = {
       country: 'china',
       people: 200,
       age: 30
@@ -47,8 +47,8 @@ describe('pass three or more params and the deep param is false', () => {
       age: 30
     });
   });
-  test('it will change the target',() => {
-    let deepObj = {
+  test('it will change the target', () => {
+    const deepObj = {
       country: 'china',
       people: 200,
       set: {
@@ -82,14 +82,14 @@ describe('pass three or more params and the deep param is false', () => {
 });
 
 describe('pass three or more params and the deep param is true', () => {
-  test('deep merge',() => {
-    let deepObj = {
+  test('deep merge', () => {
+    const deepObj = {
       country: 'china',
       set: {
         people: 200,
         age: 30
       }
-    }
+    };
     expect(merge(true, deepObj, {
       country: 'English',
       people: 200,
@@ -110,13 +110,13 @@ describe('pass three or more params and the deep param is true', () => {
 });
 
 describe('it also can merge array', () => {
-  test('shadow merge',() => {
-    let targetArr = [{
+  test('shadow merge', () => {
+    const targetArr = [{
       name: 'aaa'
     }, {
       name: 'bbb'
     }, {
-      name: 'ccc', 
+      name: 'ccc',
       sex: 1
     }];
     expect(merge(false, targetArr, [{
@@ -133,8 +133,8 @@ describe('it also can merge array', () => {
       age: 'ccc'
     }]);
   });
-  test('deep merge',() => {
-    let targetArr = [{
+  test('deep merge', () => {
+    const targetArr = [{
       name: 'aaa'
     }, {
       name: 'bbb'
@@ -149,19 +149,19 @@ describe('it also can merge array', () => {
     }, {
       age: 'ccc'
     }])).toEqual([{
-      age: 'aaa', 
+      age: 'aaa',
       name: 'aaa'
     }, {
-      age: 'bbb', 
+      age: 'bbb',
       name: 'bbb'
     }, {
-      age: 'ccc', 
-      name: 'ccc', 
+      age: 'ccc',
+      name: 'ccc',
       sex: 1
     }]);
   });
-  test('deep merge',() => {
-    let targetArr = {
+  test('deep merge', () => {
+    const targetArr = {
       name: 'ccc',
       sex: 1
     };

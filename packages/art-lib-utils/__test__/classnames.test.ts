@@ -7,7 +7,7 @@ import { classNames } from '../src/utils/classnames';
  */
 describe('params are string or number', () => {
     test('', () => {
-        expect(classNames(1,2,3,'a')).toBe('1 2 3 a');
+        expect(classNames(1, 2, 3, 'a')).toBe('1 2 3 a');
     });
 });
 describe('params contains array or object', () => {
@@ -15,10 +15,10 @@ describe('params contains array or object', () => {
         expect(classNames(1, [2, 3], 'a', {b: 'sss'})).toBe('1 2 3 a b');
     });
     test('array has more than one nesting', () => {
-        expect(classNames(1, [2, 3], [[4,5]], 'a', [[6, [7,8]]])).toBe('1 2 3 4 5 a 6 7 8');
+        expect(classNames(1, [2, 3], [[4, 5]], 'a', [[6, [7, 8]]])).toBe('1 2 3 4 5 a 6 7 8');
     });
     test('object has more than one nesting', () => {
-        expect(classNames(1, [2, 3], [[4,5]], 'a', {b: 'sss', c: {d: 'www'}})).toBe('1 2 3 4 5 a b c');
+        expect(classNames(1, [2, 3], [[4, 5]], 'a', {b: 'sss', c: {d: 'www'}})).toBe('1 2 3 4 5 a b c');
     });
 });
 describe('params contains boolean or null or undefined', () => {

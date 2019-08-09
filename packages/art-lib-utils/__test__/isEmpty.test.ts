@@ -11,11 +11,11 @@ describe('array', () => {
 
 describe('object', () => {
 	test('empty object', () => {
-		let Person = {};
+		const Person = {};
 		expect(isEmpty(Person)).not.toBeFalsy();
 	});
 	test('not empty object', () => {
-		let Person = {
+		const Person = {
 			name: 'lily'
 		};
 		expect(isEmpty(Person)).toBeFalsy();
@@ -24,11 +24,11 @@ describe('object', () => {
 
 describe('map', () => {
 	test('empty map', () => {
-		let map = new Map;
+		const map = new Map();
 		expect(isEmpty(map)).not.toBeFalsy();
 	});
 	test('and empty map', () => {
-		let mapNew = new Map;
+		const mapNew = new Map();
 		mapNew.set('name', '123');
 		expect(isEmpty(mapNew)).not.toBeFalsy();
 	});
@@ -46,7 +46,7 @@ describe('generate', () => {
 		expect(isEmpty(generate())).not.toBeFalsy();
 	});
 	test('and empty generate', () => {
-		expect(isEmpty(generate(1,2))).not.toBeFalsy();
+		expect(isEmpty(generate(1, 2))).not.toBeFalsy();
 	});
 });
 
