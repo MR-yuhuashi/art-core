@@ -10,19 +10,19 @@ const inquirer_1 = __importDefault(require("inquirer"));
 const index_1 = require("../scaffold/index");
 const Scaffolds_1 = require("../enums/Scaffolds");
 const CreateCmdTypes_1 = require("../enums/CreateCmdTypes");
-const scaffolds = [Scaffolds_1.Scaffolds.react, Scaffolds_1.Scaffolds.miniprogram];
-// TODO add miniprogram support
+const resolveAppPath_1 = __importDefault(require("art-dev-utils/lib/resolveAppPath"));
+const fs_1 = require("fs");
+const scaffolds = [Scaffolds_1.Scaffolds.react, Scaffolds_1.Scaffolds.miniprogram, Scaffolds_1.Scaffolds.ssrReact, Scaffolds_1.Scaffolds.ssrVue];
 class CreateCommand {
     constructor() {
         this.command = 'create';
         this.describe = chalk_1.default.black.bold(`create art scaffold ${scaffolds.join(',')} `);
         this.handler = (argv) => {
-            // TODO add miniprogram support
-            if (argv.scaffold === Scaffolds_1.Scaffolds.miniprogram) {
-                console.log(`${chalk_1.default.green.bold('art create')} command is not currently support create ${chalk_1.default.green.bold(Scaffolds_1.Scaffolds.miniprogram)} project`);
+            const commandType = argv._[1];
+            if (argv.scaffold === Scaffolds_1.Scaffolds.ssrVue) {
+                console.log(chalk_1.default.magenta(`Scaffold ${chalk_1.default.green(argv.scaffold)} is not supported for now!`));
                 return;
             }
-            const commandType = argv._[1];
             const fileFilter = (file) => {
                 const fileBaseName = path_1.basename(file);
                 return fileBaseName === '.' || fileBaseName !== '.git' || fileBaseName[0] !== '.';
@@ -33,7 +33,26 @@ class CreateCommand {
             }
             this.commandEntry(commandType)
                 .then((answers) => {
-                index_1.create(argv.scaffold, commandType, answers);
+                const artConfigExist = fs_1.existsSync(resolveAppPath_1.default('art.config.js'));
+                if (artConfigExist) {
+                    const appConfig = require(resolveAppPath_1.default('art.config.js'));
+                    const { moduleName } = answers;
+                    const modulesKey = Object.keys(appConfig.webpack.entry);
+                    const projectVirtualPath = appConfig.projectVirtualPath;
+                    let modulePath = path_1.join(projectVirtualPath, moduleName);
+                    if (modulePath.endsWith('/')) {
+                        modulePath = modulePath.slice(0, modulePath.length - 1);
+                    }
+                    if (modulesKey.indexOf(modulePath) < 0) {
+                        index_1.create(argv.scaffold, commandType, answers);
+                    }
+                    else {
+                        console.log(chalk_1.default.yellow(`module ${chalk_1.default.green(moduleName)} has existed!`));
+                    }
+                }
+                else {
+                    index_1.create(argv.scaffold, commandType, answers);
+                }
             })
                 .catch((err) => {
                 return console.log(chalk_1.default.red(err));
