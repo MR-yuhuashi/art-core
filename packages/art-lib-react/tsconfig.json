@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "baseUrl": ".",
@@ -21,6 +20,7 @@
     "preserveConstEnums": true,
     "removeComments": false,
     "outDir": "./dist/", /* Redirect output structure to the directory. */
+    "preserveSymlinks": true,
     "rootDir": "./src/", /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     "sourceMap": false,
     "strictFunctionTypes": true,

@@ -18,7 +18,7 @@ export default class PickerSingle extends CoreComponent<IPickerSingleProps, any>
         spinner: boolean;
     };
     setPickerRef: (ref: any) => void;
-    handleUpdateDataSource: () => Promise<import("src/components/picker/propTypes").ISingleColumns>;
+    handleUpdateDataSource: () => Promise<import("art-lib-react/src/components/picker/propTypes").ISingleColumns>;
     handleCancel: () => void;
     handleConfirm: () => void;
     handelSelected: (selectedItem: any, isFirstChoose: any) => void;
