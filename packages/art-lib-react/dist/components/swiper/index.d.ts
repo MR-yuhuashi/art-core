@@ -31,7 +31,7 @@ export default class Swiper extends CoreComponent<ISwiper, any> {
         flowRotation: number;
         flowDepth: number;
         flowShadow: boolean;
-        onTap: (currentPage: number, event: React.MouseEvent<HTMLDivElement>) => void;
+        onTap: (currentPage: number, event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
         onSwiperChanged: (currentPage: any) => void;
     };
     componentDidMount(): void;

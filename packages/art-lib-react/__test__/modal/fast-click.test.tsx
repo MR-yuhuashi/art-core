@@ -44,8 +44,8 @@ test('have correct props', () => {
 });
 
 test('handle correct events', () => {
-  wrapper.find('div').simulate('click')
+  wrapper.find('div').simulate('click');
   expect(testClick).toBeCalled();
-  wrapper.find('div').simulate('touchstart')
+  wrapper.find('div').simulate('touchstart');
   expect(testTouchStart).toBeCalled();
 });

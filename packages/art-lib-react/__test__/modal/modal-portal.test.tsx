@@ -34,7 +34,6 @@ test('the state isOpen is true and it render correct', () => {
   expect(wrapper.state('isOpen')).toBeTruthy();
   expect(toJson(wrapper)).toMatchSnapshot();
 });
-  
 
 test('the props mask and it has different style', () => {
   wrapper.setState({
