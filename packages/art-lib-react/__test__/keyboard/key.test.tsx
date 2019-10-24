@@ -23,7 +23,7 @@ test('create correct snapShot', () => {
 /**
  * 标签正确，为 i 标签
  */
-describe('have correct tag and content', () => {
+describe('key component', () => {
   test('have one tag of i and text from props', () => {
     expect(wrapper.find('i').length).toBe(1);
     expect(wrapper.find('div').length).toBe(0);
