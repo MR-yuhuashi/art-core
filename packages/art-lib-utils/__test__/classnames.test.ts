@@ -7,7 +7,7 @@ import { classNames } from '../src/utils/classnames';
  */
 describe('params are string or number', () => {
     test('', () => {
-        expect(classNames(1, 2, 3, 'a')).toBe('1 2 3 a');
+        expect(classNames(1, 2, 3, 'a')).toBe('1 2 3 a b');
     });
 });
 describe('params contains array or object', () => {
