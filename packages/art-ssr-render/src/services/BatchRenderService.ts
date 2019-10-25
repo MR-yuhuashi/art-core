@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { ServerConfig } from '../RenderServer';
 import { errorToSerializable } from '../utils/errorToSerializable';
-import { Service } from 'typedi';
+import { IServerConfig } from '../interfaces/IServerConfig';
 
 function now() {
   return process.hrtime();
@@ -17,9 +16,8 @@ const noHTMLError = new TypeError(
 );
 noHTMLError.stack = undefined;
 
-@Service()
 export default class BatchRenderService {
-  constructor(request: Request, response: Response, config: ServerConfig) {
+  constructor(request: Request, response: Response, config: IServerConfig) {
     // request.body example:
     // { Home: { name: 'home', data: { url: '/home' }, metadata: { desc: 'it is desc' } }, Detail: { name: 'detail', data: { url: '/detail' },
     // metadata: { title: 'it is title' } } }
@@ -57,6 +55,8 @@ export default class BatchRenderService {
         statusCode: 200,
         duration: null,
         html: null,
+        css: null,
+        state: null,
         returnMeta: {},
       };
       return obj;
@@ -68,7 +68,7 @@ export default class BatchRenderService {
     });
   }
 
-  private config: ServerConfig;
+  private config: IServerConfig;
   private plugins: any[];
   private error: any;
   public statusCode: number;
@@ -90,6 +90,8 @@ export default class BatchRenderService {
       statusCode: number;
       duration: number | null;
       html: string | null;
+      css: string | null;
+      state: string | null;
       returnMeta: any;
       error: any;
     }
@@ -151,10 +153,9 @@ export default class BatchRenderService {
   public render(token: string) {
     const start = now();
     const jobContext = this.jobContexts[token];
+    console.log('jobContext: ', jobContext);
     const { name } = jobContext;
 
-    // TODO remove ts ignore
-    // @ts-ignore
     const { getComponent } = this.config;
     const component = getComponent(name, jobContext).default;
     const result = typeof component === 'function' ? component : component[name];
@@ -172,12 +173,15 @@ export default class BatchRenderService {
       .then((renderToString) => {
         return Promise.resolve(renderToString(jobContext.props));
       })
-      .then((html) => {
+      .then(({html, css, state}) => {
         if (!html) {
           return Promise.reject(noHTMLError);
         }
-
+        console.log('rendered style: ', css);
+        console.log('state: ', state);
         jobContext.html = html;
+        jobContext.css = css;
+        jobContext.state = state;
         jobContext.duration = msSince(start);
         return Promise.resolve(jobContext);
       })
@@ -191,11 +195,13 @@ export default class BatchRenderService {
     return {
       success: this.error === null,
       error: this.error,
-      result: Object.keys(this.jobContexts).reduce((result, jobToken) => {
+      results: Object.keys(this.jobContexts).reduce((result, jobToken) => {
         const context = this.jobContexts[jobToken];
         result[jobToken] = {
           name: context.name,
           html: context.html,
+          css: context.css,
+          state: context.state,
           meta: context.returnMeta,
           duration: context.duration,
           statusCode: context.statusCode,

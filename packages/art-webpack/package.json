@@ -1,6 +1,6 @@
 {
   "name": "art-webpack",
-  "version": "0.0.44",
+  "version": "0.0.49",
   "description": "art framework webpack",
   "main": "index.js",
   "author": "Bowen Zhong",
@@ -21,6 +21,7 @@
     "chalk": "^2.4.1",
     "cors": "^2.8.4",
     "cpx": "^1.5.0",
+    "cross-spawn": "^6.0.5",
     "css-hot-loader": "1.4.2",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.7",
@@ -45,6 +46,7 @@
     "nodemon": "^1.18.7",
     "object-assign": "^4.1.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "parallel-webpack": "^2.4.0",
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.11.0",
     "qs": "^6.5.2",
@@ -61,6 +63,7 @@
   },
   "devDependencies": {
     "@types/async": "^2.0.49",
+    "@types/cross-spawn": "^6.0.0",
     "@types/fs-extra": "^5.0.4",
     "@types/html-webpack-plugin": "^3.2.0",
     "@types/inquirer": "^0.0.42",

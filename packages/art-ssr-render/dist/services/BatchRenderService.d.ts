@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { ServerConfig } from '../RenderServer';
+import { IServerConfig } from '../interfaces/IServerConfig';
 export default class BatchRenderService {
-    constructor(request: Request, response: Response, config: ServerConfig);
+    constructor(request: Request, response: Response, config: IServerConfig);
     private config;
     private plugins;
     private error;
@@ -30,12 +30,14 @@ export default class BatchRenderService {
         statusCode: number;
         duration: number | null;
         html: string | null;
+        css: string | null;
+        state: string | null;
         returnMeta: any;
         error: any;
     }>;
     getResults(): {
         success: boolean;
         error: any;
-        result: {};
+        results: {};
     };
 }

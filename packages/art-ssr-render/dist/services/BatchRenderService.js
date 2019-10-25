@@ -1,16 +1,6 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const errorToSerializable_1 = require("../utils/errorToSerializable");
-const typedi_1 = require("typedi");
 function now() {
     return process.hrtime();
 }
@@ -20,7 +10,7 @@ function msSince(start) {
 }
 const noHTMLError = new TypeError('HTML was not returned to SSR render server, this is most likely an error within your application. Check your logs for any uncaught errors and/or rejections.');
 noHTMLError.stack = undefined;
-let BatchRenderService = class BatchRenderService {
+class BatchRenderService {
     constructor(request, response, config) {
         // request.body example:
         // { Home: { name: 'home', data: { url: '/home' }, metadata: { desc: 'it is desc' } }, Detail: { name: 'detail', data: { url: '/detail' },
@@ -55,6 +45,8 @@ let BatchRenderService = class BatchRenderService {
                 statusCode: 200,
                 duration: null,
                 html: null,
+                css: null,
+                state: null,
                 returnMeta: {},
             };
             return obj;
@@ -110,9 +102,8 @@ let BatchRenderService = class BatchRenderService {
     render(token) {
         const start = now();
         const jobContext = this.jobContexts[token];
+        console.log('jobContext: ', jobContext);
         const { name } = jobContext;
-        // TODO remove ts ignore
-        // @ts-ignore
         const { getComponent } = this.config;
         const component = getComponent(name, jobContext).default;
         const result = typeof component === 'function' ? component : component[name];
@@ -128,11 +119,15 @@ let BatchRenderService = class BatchRenderService {
             .then((renderToString) => {
             return Promise.resolve(renderToString(jobContext.props));
         })
-            .then((html) => {
+            .then(({ html, css, state }) => {
             if (!html) {
                 return Promise.reject(noHTMLError);
             }
+            console.log('rendered style: ', css);
+            console.log('state: ', state);
             jobContext.html = html;
+            jobContext.css = css;
+            jobContext.state = state;
             jobContext.duration = msSince(start);
             return Promise.resolve(jobContext);
         })
@@ -145,11 +140,13 @@ let BatchRenderService = class BatchRenderService {
         return {
             success: this.error === null,
             error: this.error,
-            result: Object.keys(this.jobContexts).reduce((result, jobToken) => {
+            results: Object.keys(this.jobContexts).reduce((result, jobToken) => {
                 const context = this.jobContexts[jobToken];
                 result[jobToken] = {
                     name: context.name,
                     html: context.html,
+                    css: context.css,
+                    state: context.state,
                     meta: context.returnMeta,
                     duration: context.duration,
                     statusCode: context.statusCode,
@@ -160,9 +157,5 @@ let BatchRenderService = class BatchRenderService {
             }, {})
         };
     }
-};
-BatchRenderService = __decorate([
-    typedi_1.Service(),
-    __metadata("design:paramtypes", [Object, Object, Object])
-], BatchRenderService);
+}
 exports.default = BatchRenderService;

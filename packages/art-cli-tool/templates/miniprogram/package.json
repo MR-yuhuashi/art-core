@@ -1,0 +1,17 @@
+{
+  "name": "art-miniprogram",
+  "version": "0.0.1",
+  "description": "WeChat miniprogram application based on art frontend development framework",
+  "author": "YGM",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "less": "3.8.1",
+    "mockjs": "^1.0.1-beta3",
+    "routing-controllers": "0.7.7"
+  },
+  "devDependencies": {
+    "tslint": "5.11.0",
+    "typescript": "3.0.1"
+  }
+}

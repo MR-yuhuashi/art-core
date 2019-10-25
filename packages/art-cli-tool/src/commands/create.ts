@@ -1,14 +1,15 @@
 import { CommandModule, Argv } from 'yargs';
 import chalk from 'chalk';
 import emptyDir from 'empty-dir';
-import { basename } from 'path';
+import { basename, join } from 'path';
 import inquirer, { Question, Answers } from 'inquirer';
 import { create, ProjectScaffold, ModuleScaffold } from '../scaffold/index';
 import { Scaffolds } from '../enums/Scaffolds';
 import { CreateCmdTypes } from '../enums/CreateCmdTypes';
-const scaffolds = [Scaffolds.react, Scaffolds.miniprogram];
+import resolveAppPath from 'art-dev-utils/lib/resolveAppPath';
+import { existsSync } from 'fs';
+const scaffolds = [Scaffolds.react, Scaffolds.miniprogram, Scaffolds.ssrReact, Scaffolds.ssrVue];
 
-// TODO add miniprogram support
 class CreateCommand implements CommandModule {
 
   public readonly command = 'create';
@@ -53,13 +54,12 @@ class CreateCommand implements CommandModule {
   }
 
   public handler = (argv) => {
-    // TODO add miniprogram support
-    if (argv.scaffold === Scaffolds.miniprogram) {
-      console.log(`${chalk.green.bold('art create')} command is not currently support create ${chalk.green.bold(Scaffolds.miniprogram)} project`);
-      return;
-    }
 
     const commandType = argv._[1];
+    if (argv.scaffold === Scaffolds.ssrVue) {
+      console.log(chalk.magenta(`Scaffold ${chalk.green(argv.scaffold)} is not supported for now!`));
+      return;
+    }
     const fileFilter = (file: string) => {
       const fileBaseName = basename(file);
       return fileBaseName === '.' || fileBaseName !== '.git' || fileBaseName[0] !== '.';
@@ -74,7 +74,28 @@ class CreateCommand implements CommandModule {
 
     (this.commandEntry(commandType) as Promise<ProjectScaffold | ModuleScaffold>)
       .then((answers) => {
-        create(argv.scaffold, commandType, answers);
+        const artConfigExist = existsSync(resolveAppPath('art.config.js'));
+
+        if (artConfigExist) {
+          const appConfig = require(resolveAppPath('art.config.js'));
+
+          const { moduleName } = answers;
+          const modulesKey = Object.keys(appConfig.webpack.entry);
+          const projectVirtualPath = appConfig.projectVirtualPath;
+
+          let modulePath = join(projectVirtualPath, moduleName);
+          if (modulePath.endsWith('/')) {
+            modulePath = modulePath.slice(0, modulePath.length - 1);
+          }
+
+          if (modulesKey.indexOf(modulePath) < 0) {
+            create(argv.scaffold, commandType, answers);
+          } else {
+            console.log(chalk.yellow(`module ${chalk.green(moduleName)} has existed!`));
+          }
+        } else {
+          create(argv.scaffold, commandType, answers);
+        }
       })
       .catch((err) => {
         return console.log(chalk.red(err));
