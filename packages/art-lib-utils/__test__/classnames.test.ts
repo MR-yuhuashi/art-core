@@ -8,8 +8,7 @@ import { isString } from 'util';
 
 describe('classnames', () => {
   test('pass some valid params and the result will be a string', () => {
-    const result = classNames('active', 'btn', 2, '');
-    expect(isString(result)).toBeTruthy();
+    expect(classNames(2)).toBe('2');
   });
 
   test('pass valid params and result will be joined with empty space', () => {
@@ -30,6 +29,10 @@ describe('classnames', () => {
 
   test('undefined and null will be skipped', () => {
     expect(classNames(undefined, null, 'active', 'btn')).toBe('active btn');
+  });
+
+  test('deep falsy or empty params and will return empty string', () => {
+    expect(classNames([0], [{}], [''])).toBe('');
   });
 
   test('array params will be joined', () => {
