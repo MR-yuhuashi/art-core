@@ -1,1 +1,1 @@
-export declare const trim: (value: any) => any;
+export declare const trim: (value: string) => string;
