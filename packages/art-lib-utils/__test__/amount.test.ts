@@ -1,4 +1,4 @@
-import { numberFormat } from '../src/utils/amount';
+import { numberFormat, amtToArr } from '../src/utils/amount';
 
 /**
  * 5个参数
@@ -59,5 +59,23 @@ describe('Formats a number with grouped thousands', () => {
 
   test('if decimals is infinite and the decimals will be changed to 0', () => {
     expect(numberFormat(3112.9876, 1000 / 0, '.', ',')).toBe('3,112');
+  });
+});
+
+describe('amount number to array', () => {
+  test(`if amount pass NaN, it will return ['0.', '00']`, () => {
+    expect(amtToArr(NaN)).toEqual(['0.', '00']);
+  });
+
+  test('if not pass formatBit it will fixed default formatBit 2', () => {
+    expect(amtToArr(100.123)).toEqual(['100.', '12']);
+  });
+
+  test('if pass formatBit, it will fixed what you passed', () => {
+    expect(amtToArr(100.123456, 5)).toEqual(['100.', '12346']);
+  });
+
+  test('use Math.round to handle fixed', () => {
+    expect(amtToArr(100.123)).toEqual(['100.', '12']);
   });
 });
