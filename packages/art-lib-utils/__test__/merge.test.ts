@@ -1,5 +1,7 @@
 import merge from '../src/utils/merge';
 
+import each from 'jest-each';
+
 /**
  * merge object, compare to the extends function of jquery 
  * 1、一个参数
@@ -10,12 +12,9 @@ import merge from '../src/utils/merge';
  */
 
 describe('merge function', () => {
-  test('only pass true, not pass target and source then it will return {}', () => {
-    expect(merge(true)).toEqual({});
-  });
 
-  test('only pass false, not pass target and source then it will return {}', () => {
-    expect(merge(false)).toEqual({});
+  each([true, false]).test('only pass deep param %p, not pass target and source then it will return {}', (value) => {
+    expect(merge(value)).toEqual({});
   });
 
   test('pass target, not pass source then it will return the target', () => {
@@ -168,75 +167,3 @@ describe('merge function', () => {
     expect(merge(true, [1, 2, ['a', 'b']], [3, 2, ['a', 'c', 'd']])).toEqual([3, 2, ['a', 'c', 'd']]);
   });
 });
-
-// describe('it also can merge array', () => {
-//   test('shadow merge', () => {
-//     const targetArr = [{
-//       name: 'aaa'
-//     }, {
-//       name: 'bbb'
-//     }, {
-//       name: 'ccc',
-//       sex: 1
-//     }];
-//     expect(merge(false, targetArr, [{
-//       age: 'aaa'
-//     }, {
-//       age: 'bbb'
-//     }, {
-//       age: 'ccc'
-//     }])).toEqual([{
-//       age: 'aaa'
-//     }, {
-//       age: 'bbb'
-//     }, {
-//       age: 'ccc'
-//     }]);
-//   });
-//   test('deep merge', () => {
-//     const targetArr = [{
-//       name: 'aaa'
-//     }, {
-//       name: 'bbb'
-//     }, {
-//       name: 'ccc',
-//       sex: 1
-//     }];
-//     expect(merge(true, targetArr, [{
-//       age: 'aaa'
-//     }, {
-//       age: 'bbb'
-//     }, {
-//       age: 'ccc'
-//     }])).toEqual([{
-//       age: 'aaa',
-//       name: 'aaa'
-//     }, {
-//       age: 'bbb',
-//       name: 'bbb'
-//     }, {
-//       age: 'ccc',
-//       name: 'ccc',
-//       sex: 1
-//     }]);
-//   });
-//   test('deep merge', () => {
-//     const targetArr = {
-//       name: 'ccc',
-//       sex: 1
-//     };
-//     expect(merge(true, targetArr, [{
-//       age: 'aaa'
-//     }, {
-//       age: 'bbb'
-//     }, {
-//       age: 'ccc'
-//     }])).toEqual({
-//       0: { age: 'aaa' },
-//       1: { age: 'bbb' },
-//       2: { age: 'ccc' },
-//       name: 'ccc',
-//       sex: 1
-//     });
-//   });
-// });
